@@ -1,13 +1,26 @@
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/style.css" />
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="login.css">
     <title>DESIGNSQUARE</title>
-  </head>
-  <body>
+</head>
+
+<body>
     <header></header>
+    <section class="main">
+        <form id="form-login" target="_self">
+            <label for="username">Username</label>
+            <input type="text" id="inputUsername" name="username" value="">
+            <label for="password">Password</label>
+            <input type="text" id="inputPassword" name="password" autocomplete="on" value="">
+            <button class="submit-button" type="submit" value="Submit">Log in</button>
+        </form>
+    </section>
 
     <footer></footer>
-  </body>
+</body>
+
 </html>
