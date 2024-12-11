@@ -1,0 +1,26 @@
+main{
+    width: 80%;
+    margin: 20px auto;
+}
+
+div[class*="filter"] {
+    margin: 10px auto;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+button, select {
+    background-color: white;
+    color:black;
+    border: 0.5px solid rgb(230, 230, 230);
+    padding: 5px 8px;
+    border-radius: 2px;
+}
+
+.product-list {
+    display:flex;
+    flex-wrap: wrap;
+    gap:10px;
+}
