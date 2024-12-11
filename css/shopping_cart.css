@@ -1,0 +1,98 @@
+@import "style.css";
+
+/*################ Shopping cart table items styling ##################*/
+#shopping-cart-list img{
+    background-color: black;
+    width: 100px;
+    height: 100px;
+
+}
+
+#shopping-cart-list{
+    margin: 40px auto;
+    /* border: 1px solid black; */
+    border-spacing: 10px;
+    border-collapse: collapse;
+}
+
+#shopping-cart-list th{
+    text-align: left;
+    padding: 10px;
+    font-size: 18px;
+}
+
+#shopping-cart-list td{
+    border-top: 1px solid black;
+    padding: 10px;
+    /* border: 1px solid black; */
+}
+
+.qty-input{
+    width: 30px;
+    height: 25px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#total{
+    text-align: right;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/*############## Buttons styling #####################*/
+
+#shopping-cart-list button{
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+#shopping-cart-list button:hover{
+    cursor: pointer;
+}
+
+.qty-btn{
+    font-size: 14px;
+    font-weight: bold;
+    height:25px;
+    width: 30px;
+    padding:5px;
+    vertical-align: middle;
+    background-color: black;
+    color: white;
+}
+
+.edit-btn{
+    background-color: black;
+    color: white;
+    padding: 10px;
+}
+
+.edit-btn:hover,
+.qty-btn:hover{
+    background-color: rgb(104, 134, 134);
+}
+
+.edit-btn:active,
+.qty-btn:active{
+    background-color: rgb(167, 180, 180);
+    color: black;
+}
+
+#checkout-btn{
+    text-transform: uppercase;
+    float: right;
+    padding: 10px;
+    background-color: darkred;
+    color: white;
+}
+
+#checkout-btn:hover{
+    background-color: rgb(194, 76, 76);
+}
+
+#checkout-btn:active{
+    background-color: rgb(76, 1, 1);
+}
+
