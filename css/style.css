@@ -4,20 +4,134 @@
   box-sizing: border-box;
 }
 
+
 .submit-button {
   background-color: rgb(77, 206, 77);
-  padding: 10px;
-  border-radius: 5px;
 }
 
 .checkout-button {
   background-color: rgb(246, 53, 53);
+}
+
+
+.submit-button:hover {
+  background-color: rgb(66, 181, 66);
+}
+
+.checkout-button:hover {
+  background-color: rgb(224, 33, 33);
+}
+
+.submit-button,
+.checkout-button {
   padding: 10px;
   border-radius: 5px;
+  font-size: 16px;
 }
 
 a {
   text-decoration: none;
   color: white;
   font-size: 18px;
+}
+
+nav {
+  background-color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 100px;
+  padding: 10px;
+}
+
+nav .logo-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+nav h1 {
+  margin: 0;
+  font-size: 30px;
+  color: white;
+  text-align: center;
+
+}
+
+nav .link-box {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+}
+
+.search-box {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+}
+
+form.example {
+  display: flex;
+  align-items: center;
+
+}
+
+form.example input[type=text] {
+  padding: 10px;
+  font-size: 14px;
+  border: none;
+  background: #f1f1f1;
+  width: 50%px;
+}
+
+form.example button {
+  padding: 9.9px;
+  background: #f1f1f1;
+  color: rgb(0, 0, 0);
+  font-size: 17px;
+  border: none;
+  border-left: none;
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background-color: #0bda68;
+  transition: background-color 0.3s ease;
+}
+
+
+.cart-link {
+  color: white;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+.cart-link:hover {
+  color: #0bda68;
+  transition: color 0.3s ease;
+}
+
+.search-box .login-btn {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  text-align: center;
+  width: 100%;
+  max-width: 120px;
+  cursor: pointer;
+}
+
+.search-box .login-btn:hover {
+  background-color: #0bda68;
+  transition: background-color 0.3s ease;
 }
