@@ -8,43 +8,52 @@
   </head>
   <body>
     <header>
-      <button id="women-tag">WOMEN</button>
-      <button id="men-tag">MEN</button>
-      <button id="children-tag">CHILDREN</button>
+      <button id="women-link">WOMEN</button>
+      <button id="men-link">MEN</button>
+      <button id="children-link">CHILDREN</button>
     </header>
     <main>
       <section class="filter">
-        <div class="women-filter">
-          <button type="button">T-Shirts</button>
-          <button type="button">Shirts</button>
-          <button type="button">Activewear</button>
-          <button type="button">Dresses</button>
-          <button type="button">Leggings</button>
-          <button type="button">Skirts</button>
-          <button type="button">Cardigans</button>
-          <button type="button">Jackets</button>
-          <button type="button">Sweaters</button>
+        <div class="filter-wrapper active" id="women-filter">
+          <div class="women-filter">
+            <button type="button">T-Shirts</button>
+            <button type="button">Shirts</button>
+            <button type="button">Activewear</button>
+            <button type="button">Dresses</button>
+            <button type="button">Leggings</button>
+            <button type="button">Skirts</button>
+            <button type="button">Cardigans</button>
+            <button type="button">Jackets</button>
+            <button type="button">Sweaters</button>
+          </div>
         </div>
 
-        <div class="men-filter">
-          <button type="button">Jeans</button>
-          <button type="button">Shorts</button>
-          <button type="button">Polo Shirts</button>
-          <button type="button">Shirts</button>
-          <button type="button">T-Shirts</button>
-          <button type="button">Pants</button>
+        <div class="filter-wrapper" id="men-filter">
+          <div class="men-filter">
+            <button type="button">Jeans</button>
+            <button type="button">Shorts</button>
+            <button type="button">Polo Shirts</button>
+            <button type="button">Shirts</button>
+            <button type="button">T-Shirts</button>
+            <button type="button">Pants</button>
+  
+          </div>
+        </div>
 
+
+        <div class="filter-wrapper" id="children-filter">
+          <div class="children-filter" >
+            <button type="button">Jackets</button>
+            <button type="button">Jeans</button>
+            <button type="button">Hoodies</button>
+            <button type="button">Shoes</button>
+            <button type="button">Pants</button>
+            <button type="button">Sweatshirts</button>
+            <button type="button">Shorts</button>
+            <button type="button">Sleepwear</button>
+          </div>
         </div>
-        <div class="children-filter">
-          <button type="button">Jackets</button>
-          <button type="button">Jeans</button>
-          <button type="button">Hoodies</button>
-          <button type="button">Shoes</button>
-          <button type="button">Pants</button>
-          <button type="button">Sweatshirts</button>
-          <button type="button">Shorts</button>
-          <button type="button">Sleepwear</button>
-        </div>
+
 
         <select id="sort-products">
           <option>Recommended</option>
@@ -87,5 +96,6 @@
     </main>
 
     <footer></footer>
+    <script src="js/productlist.js"></script>
   </body>
 </html>

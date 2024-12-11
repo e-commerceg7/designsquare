@@ -3,7 +3,7 @@ main{
     margin: 20px auto;
 }
 
-div[class*="filter"] {
+div[class*="_filter"] {
     margin: 10px auto;
     display: flex;
     gap: 5px;
@@ -23,4 +23,12 @@ button, select {
     display:flex;
     flex-wrap: wrap;
     gap:10px;
+}
+
+.filter-wrapper {
+    display: none;
+}
+
+.active{
+    display: block;
 }
