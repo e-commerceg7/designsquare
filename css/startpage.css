@@ -7,11 +7,37 @@
     background-position: center -130px;
     background-repeat: no-repeat;
 }
-
 .hero-overlay{
     position: absolute;
     top: 20%;
     left: 50px;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     text-align: center;
+}
+.departments{
+    display: flex;
+}
+.men{
+    width: 25%;
+    height: 300px;
+    background-image: url(../img/man.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.women{
+    width: 25%;
+    height: 300px;
+    background-image: url(../img/woman.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.child{
+    width: 25%;
+    height: 300px;
+    background-image: url(../img/child.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
