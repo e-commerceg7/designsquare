@@ -1,6 +1,7 @@
 .hero{
     position: relative;
-    width: 100%;
+    width: 90%;
+    margin: 0 auto;
     height: 50vw;
     background-image: url(../img/hero-family.jpg);
     background-size: cover;
@@ -14,4 +15,5 @@
     left: 50px;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     text-align: center;
+    text-shadow: 1px 1px 4px rgb(246, 241, 241);
 }
