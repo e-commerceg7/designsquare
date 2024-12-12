@@ -3,6 +3,12 @@ main{
     margin: 20px auto;
 }
 
+.filter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
 div[class*="_filter"] {
     margin: 10px auto;
     display: flex;
@@ -19,10 +25,20 @@ button, select {
     border-radius: 2px;
 }
 
+button:hover {
+    background-color: black;
+    color:white;
+}
+
+select:hover {
+    border: 2px solid black;
+}
+
 .product-list {
     display:flex;
     flex-wrap: wrap;
     gap:10px;
+    margin: 20px auto;
 }
 
 .filter-wrapper {
