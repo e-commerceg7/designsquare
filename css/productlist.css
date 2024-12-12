@@ -34,12 +34,6 @@ select:hover {
     border: 2px solid black;
 }
 
-.product-list {
-    display:flex;
-    flex-wrap: wrap;
-    gap:10px;
-    margin: 20px auto;
-}
 
 .filter-wrapper {
     display: none;
@@ -47,4 +41,37 @@ select:hover {
 
 .active{
     display: block;
+}
+
+/* product list */
+.product-list {
+    display:flex;
+    flex-wrap: wrap;
+    gap:10px;
+    margin: 20px auto;
+}
+
+.product-card {
+    width: 23%;
+    height: fit-content;
+}
+
+img {
+    max-width: 100%;
+    height: auto; 
+}
+
+/* img:hover {
+    transform: scale(1.05);
+} */
+
+.product-info {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.product-price {
+    font-weight: 800;
 }

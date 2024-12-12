@@ -7,6 +7,8 @@ const childrenFilter = document.getElementById("children-filter");
 import { getProducts } from "./fetchProductData.js";
 const productList = document.querySelector(".product-list");
 
+//***add <a>to wrap img to link to product detail page (need product ID)
+
 function displayProducts(products) {
   productList.innerHTML = "";
   products.forEach((product) => {
