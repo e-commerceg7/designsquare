@@ -4,14 +4,14 @@
     const password = document.getElementById('inputPassword');
 
     form.addEventListener('submit', (e) => {
-        if (username.value !== 'Grupp 13') {
+        if (username.value !== 'Grupp13') {
             e.preventDefault(); // Stoppar formuläret från att skicka
-            alert('Write correct username');
+            alert('Incorrect username or password');
         }
 
         if (password.value !== '123') {
             e.preventDefault(); // Stoppar formuläret från att skicka
-            alert('Write correct password');
+            alert('Incorrect username or password');
         }
     });
 
