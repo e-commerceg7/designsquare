@@ -1,5 +1,5 @@
 
-const addToCartBtn = document.querySelector(".-to-cart-btn");
+const addToCartBtn = document.querySelector(".to-cart-btn");
 
 addToCartBtn.addEventListener("click", () => {
     addToCart(productId);
@@ -31,13 +31,14 @@ async function getProduct(productId){
     }
 }
 
+getProduct()
 /* function displayProduct(){
 
 }; */
 
 
-const test = getProduct("675874568c163b7fe8d0b275");
+/* const test = getProduct("675874568c163b7fe8d0b275");
 
-console.log("test");
+console.log("test"); */
 
 
