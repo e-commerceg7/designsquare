@@ -45,7 +45,7 @@ async function filterAndDisplay(category) {
     product.categories.includes(category)
   );
 
-  console.log(`Produkter i kategori ${category}:`, filteredProducts); // Kontrollera att filtreringen fungerar
+  console.log(`Produkter i kategori ${category}:`, filteredProducts);
   displayProducts(filteredProducts);
 }
 
