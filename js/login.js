@@ -4,7 +4,7 @@
     const password = document.getElementById('inputPassword');
 
     form.addEventListener('submit', (e) => {
-        if (username.value !== 'Grupp13') {
+        if (username.value !== 'Grupp7') {
             e.preventDefault(); // Stoppar formuläret från att skicka
             alert('Incorrect username or password');
         }
