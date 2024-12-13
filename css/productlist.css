@@ -3,6 +3,12 @@ main{
     margin: 20px auto;
 }
 
+.filter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
 div[class*="_filter"] {
     margin: 10px auto;
     display: flex;
@@ -19,16 +25,53 @@ button, select {
     border-radius: 2px;
 }
 
-.product-list {
-    display:flex;
-    flex-wrap: wrap;
-    gap:10px;
+button:hover {
+    background-color: black;
+    color:white;
 }
 
+select:hover {
+    border: 2px solid black;
+}
+
+/* 
 .filter-wrapper {
     display: none;
 }
 
 .active{
     display: block;
+} */
+
+/* product list */
+.product-list {
+    display:flex;
+    flex-wrap: wrap;
+    gap:10px;
+    margin: 20px auto;
+}
+
+.product-card {
+    width: 23%;
+    height: fit-content;
+}
+
+img {
+    max-width: 100%;
+    height: auto; 
+}
+
+/* img:hover {
+    transform: scale(1.05);
+} */
+
+.product-info {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.product-price {
+    font-weight: 800;
 }
