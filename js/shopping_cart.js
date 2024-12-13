@@ -1,5 +1,7 @@
 
 const addToCartBtn = document.querySelector(".to-cart-btn");
+const temporaryId = "675874568c163b7fe8d0b275" //A static ID taken from the 
+// existing database, awaitng functionallity to send the ID from the product page list
 
 addToCartBtn.addEventListener("click", () => {
     addToCart(productId);
@@ -17,6 +19,7 @@ function addToCart(productId){
 //Fetch a single product by product ID
 async function getProduct(productId){
     try{
+        console.log("https://ecommerce-api-seven-omega.vercel.app/products/" + productId)
         const response = await fetch("https://ecommerce-api-seven-omega.vercel.app/products/" + productId);
     
         if(!response.ok) {
@@ -31,7 +34,7 @@ async function getProduct(productId){
     }
 }
 
-getProduct()
+getProduct(temporaryId)
 /* function displayProduct(){
 
 }; */
