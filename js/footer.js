@@ -1,3 +1,12 @@
+/*
+Put in head:
+<link rel="stylesheet" href="css/footer.css">
+
+Put in bottom of body:
+<footer id="footer"></footer>
+<script src="js/footer.js"></script>
+*/
+
 document.addEventListener("DOMContentLoaded", () => {
     const footerElement = document.getElementById('footer');
 
@@ -17,12 +26,3 @@ document.addEventListener("DOMContentLoaded", () => {
             footerElement.innerHTML = "<p>Error loading footer.</p>";
         });
 });
-
-/*
-Put in head:
-<link rel="stylesheet" href="css/footer.css">
-
-Put in bottom of body:
-<footer id="footer"></footer>
-<script src="js/footer.js"></script>
-*/
