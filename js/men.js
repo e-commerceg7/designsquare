@@ -6,7 +6,7 @@ const categoryMap = {
     shorts: 'shorts',
     polo: 'polo',
     shirts: 'shirts',
-    tShirts: 't-shirt',
+    "t-shirt": 't-shirt',
     pants: 'pants'
 }
 
