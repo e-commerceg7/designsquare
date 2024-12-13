@@ -34,14 +34,14 @@ select:hover {
     border: 2px solid black;
 }
 
-
+/* 
 .filter-wrapper {
     display: none;
 }
 
 .active{
     display: block;
-}
+} */
 
 /* product list */
 .product-list {

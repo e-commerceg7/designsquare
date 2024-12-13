@@ -1,73 +1,78 @@
-const womenLink = document.getElementById("women-link");
-const menLink = document.getElementById("men-link");
-const childrenLink = document.getElementById("children-link");
-const womenFilter = document.getElementById("women-filter");
-const menFilter = document.getElementById("men-filter");
-const childrenFilter = document.getElementById("children-filter");
-import { getProducts } from "./fetchProductData.js";
-const productList = document.querySelector(".product-list");
+// const womenLink = document.getElementById("women-link");
+// const menLink = document.getElementById("men-link");
+// const childrenLink = document.getElementById("children-link");
+// const womenFilter = document.getElementById("women-filter");
+// const menFilter = document.getElementById("men-filter");
+// const childrenFilter = document.getElementById("children-filter");
 
-//***add <a>to wrap img to link to product detail page (need product ID)
+import { getProducts, productList, displayProducts, filterAndDisplay} from "./fetchProductData.js";
+// const productList = document.querySelector(".product-list");
 
-function displayProducts(products) {
-  productList.innerHTML = "";
-  products.forEach((product) => {
-    const productCard = document.createElement("div");
-    productCard.classList.add("product-card");
+// //***add <a>to wrap img to link to product detail page (need product ID)
 
-    const productImage = document.createElement("img");
-    productImage.src = product.image || "#";
-    productImage.alt = product.name;
+// function displayProducts(products) {
+//   productList.innerHTML = "";
+//   products.forEach((product) => {
+//     const productCard = document.createElement("div");
+//     productCard.classList.add("product-card");
 
-    const productInfo = document.createElement("div");
-    productInfo.classList.add("product-info");
+//     const productImage = document.createElement("img");
+//     productImage.src = product.image || "#";
+//     productImage.alt = product.name;
 
-    const productName = document.createElement("p");
-    productName.classList.add("product-name");
-    productName.textContent = product.name;
+//     const productInfo = document.createElement("div");
+//     productInfo.classList.add("product-info");
 
-    const price = product.price?.$numberDecimal || "Okänt pris";
-    const productPrice = document.createElement("p");
-    productPrice.classList.add("product-price");
-    productPrice.textContent = `${price} kr`;
+//     const productName = document.createElement("p");
+//     productName.classList.add("product-name");
+//     productName.textContent = product.name;
 
-    productInfo.appendChild(productName);
-    productInfo.appendChild(productPrice);
-    productCard.appendChild(productImage);
-    productCard.appendChild(productInfo);
-    productList.appendChild(productCard);
-  });
-}
+//     const price = product.price?.$numberDecimal || "Okänt pris";
+//     const productPrice = document.createElement("p");
+//     productPrice.classList.add("product-price");
+//     productPrice.textContent = `${price} kr`;
 
-async function filterAndDisplay(category) {
-  const products = await getProducts();
+//     productInfo.appendChild(productName);
+//     productInfo.appendChild(productPrice);
+//     productCard.appendChild(productImage);
+//     productCard.appendChild(productInfo);
+//     productList.appendChild(productCard);
+//   });
+// }
 
-  // Filtrera baserat på kategori
-  const filteredProducts = products.filter((product) =>
-    product.categories.includes(category)
-  );
+// async function filterAndDisplay(category) {
+//   const products = await getProducts();
 
-  console.log(`Produkter i kategori ${category}:`, filteredProducts);
-  displayProducts(filteredProducts);
-}
+//   // Filtrera baserat på kategori
+//   const filteredProducts = products.filter((product) =>
+//     product.categories.includes(category)
+//   );
 
-womenLink.addEventListener("click", () => {
-  womenFilter.classList.add("active");
-  menFilter.classList.remove("active");
-  childrenFilter.classList.remove("active");
-  filterAndDisplay("women");
-});
+//   console.log(`Produkter i kategori ${category}:`, filteredProducts);
+//   displayProducts(filteredProducts);
+// }
 
-menLink.addEventListener("click", () => {
-  menFilter.classList.add("active");
-  womenFilter.classList.remove("active");
-  childrenFilter.classList.remove("active");
-  filterAndDisplay("men");
-});
+filterAndDisplay("women");
 
-childrenLink.addEventListener("click", () => {
-  childrenFilter.classList.add("active");
-  womenFilter.classList.remove("active");
-  menFilter.classList.remove("active");
-  filterAndDisplay("children");
-});
+
+
+// womenLink.addEventListener("click", () => {
+//   womenFilter.classList.add("active");
+//   menFilter.classList.remove("active");
+//   childrenFilter.classList.remove("active");
+//   filterAndDisplay("women");
+// });
+
+// menLink.addEventListener("click", () => {
+//   menFilter.classList.add("active");
+//   womenFilter.classList.remove("active");
+//   childrenFilter.classList.remove("active");
+//   filterAndDisplay("men");
+// });
+
+// childrenLink.addEventListener("click", () => {
+//   childrenFilter.classList.add("active");
+//   womenFilter.classList.remove("active");
+//   menFilter.classList.remove("active");
+//   filterAndDisplay("children");
+// });
