@@ -47,14 +47,34 @@ export function displayProducts(products) {
   });
 }
 
-export async function filterAndDisplay(category) {
+export async function filterAndDisplay(category1, category2 = null) {
   const products = await getProducts();
 
   // Filtrera baserat på kategori
   const filteredProducts = products.filter((product) =>
-    product.categories.includes(category)
+    category2 
+      ? product.categories.includes(category1) && product.categories.includes(category2)
+      : product.categories.includes(category1)
   );
 
-  console.log(`Produkter i kategori ${category}:`, filteredProducts);
+  if (category2) {
+    console.log(`Produkter i kategori ${category1} och ${category2}:`, filteredProducts);
+  } else {
+    console.log(`Produkter i kategori ${category1}:`, filteredProducts);
+  }
+  displayProducts(filteredProducts);
+}
+
+export async function filterAndDisplaySearch(search) {
+  const products = await getProducts();
+
+  search = search.toLowerCase();
+
+  // Filtrera baserat på kategori or name or color
+  const filteredProducts = products.filter((product) =>
+   product.categories.includes(search) || product.name.toLowerCase() === search || product.color.toLowerCase() === search
+  );
+
+  console.log(`Produkter with search ${search}:`, filteredProducts);
   displayProducts(filteredProducts);
 }
