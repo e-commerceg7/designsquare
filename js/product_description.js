@@ -40,26 +40,38 @@ function displayProduct(product){
 const addToCartBtn = document.querySelector(".to-cart-btn");
 addToCartBtn.addEventListener("click", () => {
 shoppingCart.addToCart(testItem);
-})
+});
+
 displayProduct(testItem);
 
+//Object with the different functions for the shopping cart
 const shoppingCart = {
-    id: 12345,//add a way to create a unique shopping cart ID
     name: "shoppingCart",
-
-    addToCart: function(product){
-        const shoppingCart = JSON.parse(localStorage.getItem("shoppingCart")) || [];
-
-        const productSize = document.getElementById("size").value;
-        product.size = productSize;
-        shoppingCart.push(product);
-    
-        localStorage.setItem("shoppingCart", JSON.stringify(shoppingCart));
+    checkIfInCart: function (customerCart, productId){
+        
+            const itemIndex = customerCart.findIndex(item => item.id === productId && item.size === document.getElementById("size").value);
+            
+            return itemIndex;
+    },
+    addToCart: function (product){
+        const customerCart = JSON.parse(localStorage.getItem(this.name)) || [];
+        const inCartIndex = this.checkIfInCart(customerCart, testItem._id);
+        
+        if(inCartIndex !== -1){
+            customerCart[inCartIndex].quantity += 1;
+        } else {
+            const item = {
+                id: product._id,
+                size: document.getElementById("size").value,
+                price: product.price,
+                quantity: 1
+            };
+            customerCart.push(item);
+            }
+            
+            localStorage.setItem(this.name, JSON.stringify(customerCart));
     }
-    /* calculateTotalPrice: function(){
-
-    } */
-}
+};
 
 
 //Fetch a single product by product ID, might not be neccessary if an object is returned from productlist page
