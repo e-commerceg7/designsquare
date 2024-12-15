@@ -20,12 +20,10 @@ const testItem = { /// manual extract from the database used for testing functio
     "image": "https://image.hm.com/assets/hm/bb/56/bb56b5102fef5008cc73e550fbae6b27d8ead12e.jpg?imwidth=1536"
 }
 
-function displayProduct(){
+function displayProduct(product){
 
-    const productDetails = document.getElementById("product-description-details");
+    const productDetails = document.getElementById("product-description");
     const itemImage = document.querySelector("img");
-    const product = testItem/* getProduct(productId); */
-    
     
     itemImage.src = product.image;
     productDetails.innerHTML = `
@@ -41,20 +39,28 @@ function displayProduct(){
 
 const addToCartBtn = document.querySelector(".to-cart-btn");
 addToCartBtn.addEventListener("click", () => {
-addToCart(testItem);
+shoppingCart.addToCart(testItem);
 })
-displayProduct();
+displayProduct(testItem);
 
-//adding and item to shopping cart in local storage
-function addToCart(product){
-    const shoppingCart = JSON.parse(localStorage.getItem("shoppingCart")) || [];
+const shoppingCart = {
+    id: 12345,//add a way to create a unique shopping cart ID
+    name: "shoppingCart",
 
-    const productSize = document.getElementById("size").value;
-    product.size = productSize;
-    shoppingCart.push(product);
+    addToCart: function(product){
+        const shoppingCart = JSON.parse(localStorage.getItem("shoppingCart")) || [];
 
-    localStorage.setItem("shoppingCart", JSON.stringify(shoppingCart));
+        const productSize = document.getElementById("size").value;
+        product.size = productSize;
+        shoppingCart.push(product);
+    
+        localStorage.setItem("shoppingCart", JSON.stringify(shoppingCart));
+    }
+    /* calculateTotalPrice: function(){
+
+    } */
 }
+
 
 //Fetch a single product by product ID, might not be neccessary if an object is returned from productlist page
 async function getProduct(productId){
