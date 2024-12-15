@@ -64,3 +64,17 @@ export async function filterAndDisplay(category1, category2 = null) {
   }
   displayProducts(filteredProducts);
 }
+
+export async function filterAndDisplaySearch(search) {
+  const products = await getProducts();
+
+  search = search.toLowerCase();
+
+  // Filtrera baserat på kategori or name or color
+  const filteredProducts = products.filter((product) =>
+   product.categories.includes(search) || product.name.toLowerCase() === search || product.color.toLowerCase() === search
+  );
+
+  console.log(`Produkter with search ${search}:`, filteredProducts);
+  displayProducts(filteredProducts);
+}
