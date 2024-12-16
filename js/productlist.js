@@ -1,16 +1,24 @@
-import { getProducts, productList, displayProducts, filterAndDisplay} from "./fetchProductData.js";
+import { getProducts, productList, displayProducts, filterAndDisplay, filteredProducts, sortProducts} from "./fetchProductData.js";
 filterAndDisplay("women");
 
-// 1. backend: add a sort query to the get products endpoint -- .sort()method
-// 2. Modify the fech function to accept "sort" and "order" query parameters
-// 3. add event listener ("change") to the sort drop down
 
-// const sortBtn = document.getElementById("sort-products")
-// sortBtn.addEventListener("change", ()=>{
-//     const [sortBy, order] = sortBtn.value.split("-")
-//     //modified fetchanddisplay function
-// }
+const dateDesc = document.getElementById("date-desc")
+dateDesc.addEventListener("click", ()=>{
+    sortProducts("date-asc")
+    displayProducts(filteredProducts)
+})
 
+const priceAsc = document.getElementById("price-asc")
+priceAsc.addEventListener("click", ()=>{
+    sortProducts("price-asc")
+    displayProducts(filteredProducts)
+})
+
+const priceDesc = document.getElementById("price-desc")
+priceDesc.addEventListener("click", ()=>{
+    sortProducts("price-desc")
+    displayProducts(filteredProducts)
+})
 
 const categoryMap = {
     "t-shirt": 't-shirt',

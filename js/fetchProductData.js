@@ -47,11 +47,13 @@ export function displayProducts(products) {
   });
 }
 
+
+export let filteredProducts = []
 export async function filterAndDisplay(category1, category2 = null) {
   const products = await getProducts();
 
   // Filtrera baserat på kategori
-  const filteredProducts = products.filter((product) =>
+  filteredProducts = products.filter((product) =>
     category2 
       ? product.categories.includes(category1) && product.categories.includes(category2)
       : product.categories.includes(category1)
@@ -64,6 +66,20 @@ export async function filterAndDisplay(category1, category2 = null) {
   }
   displayProducts(filteredProducts);
 }
+
+export function sortProducts(sortBy) {
+  const sortedProducts = [...filteredProducts]
+  if (sortBy === "date-desc") {
+    sortedProducts.sort((a, b) => new Date(b.date) - new Date(a.date))
+  } else if (sortBy === "price-asc") {
+    sortedProducts.sort((a, b)=> a.price - b.price)
+  } else if (order === "price-desc") {
+    sortedProducts.sort((a, b)=> b.price - a.price)
+  }
+
+  return sortedProducts
+}
+
 
 export async function filterAndDisplaySearch(search) {
   const products = await getProducts();
