@@ -16,7 +16,6 @@ export async function getProducts() {
 
 export const productList = document.querySelector(".product-list");
 
-//***add <a>to wrap img to link to product detail page (need product ID)
 export function displayProducts(products) {
   productList.innerHTML = "";
   products.forEach((product) => {
@@ -33,28 +32,6 @@ export function displayProducts(products) {
             <p class="product-price">${product.price.$numberDecimal} kr</p>
           </div>
     `
-
-
-    // const productImage = document.createElement("img");
-    // productImage.src = product.image || "#";
-    // productImage.alt = product.name;
-
-    // const productInfo = document.createElement("div");
-    // productInfo.classList.add("product-info");
-
-    // const productName = document.createElement("p");
-    // productName.classList.add("product-name");
-    // productName.textContent = product.name;
-
-    // const price = product.price?.$numberDecimal || "Okänt pris";
-    // const productPrice = document.createElement("p");
-    // productPrice.classList.add("product-price");
-    // productPrice.textContent = `${price} kr`;
-
-    // productInfo.appendChild(productName);
-    // productInfo.appendChild(productPrice);
-    // productCard.appendChild(productImage);
-    // productCard.appendChild(productInfo);
     productList.appendChild(productCard);
   });
 }
@@ -84,9 +61,9 @@ export function sortProducts(sortBy) {
   if (sortBy === "date-desc") {
     sortedProducts.sort((a, b) => new Date(b.date) - new Date(a.date))
   } else if (sortBy === "price-asc") {
-    sortedProducts.sort((a, b)=> a.price - b.price)
-  } else if (order === "price-desc") {
-    sortedProducts.sort((a, b)=> b.price - a.price)
+    sortedProducts.sort((a, b)=> a.price.$numberDecimal - b.price.$numberDecimal)
+  } else if (sortBy === "price-desc") {
+    sortedProducts.sort((a, b)=> b.price.$numberDecimal - a.price.$numberDecimal)
   }
 
   return sortedProducts

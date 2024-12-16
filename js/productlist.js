@@ -2,22 +2,11 @@ import { getProducts, productList, displayProducts, filterAndDisplay, filteredPr
 filterAndDisplay("women");
 
 
-const dateDesc = document.getElementById("date-desc")
-dateDesc.addEventListener("click", ()=>{
-    sortProducts("date-asc")
-    displayProducts(filteredProducts)
-})
-
-const priceAsc = document.getElementById("price-asc")
-priceAsc.addEventListener("click", ()=>{
-    sortProducts("price-asc")
-    displayProducts(filteredProducts)
-})
-
-const priceDesc = document.getElementById("price-desc")
-priceDesc.addEventListener("click", ()=>{
-    sortProducts("price-desc")
-    displayProducts(filteredProducts)
+const sortDropdown = document.getElementById("sort-products")
+sortDropdown.addEventListener("change", (event)=>{
+    const sortBy = event.target.value
+    const sortedProducts = sortProducts(sortBy)
+    displayProducts(sortedProducts)
 })
 
 const categoryMap = {
