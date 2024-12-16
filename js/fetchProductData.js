@@ -1,7 +1,7 @@
 export async function getProducts() {
   try {
     const response = await fetch(
-      "https://ecommerce-api-seven-omega.vercel.app/products"
+      "https://ecommerce-api-ashy-ten.vercel.app/products"
     );
     if (!response.ok) {
       throw new Error("Något gick fel vid hämtning av produkterna");
@@ -23,26 +23,38 @@ export function displayProducts(products) {
     const productCard = document.createElement("div");
     productCard.classList.add("product-card");
 
-    const productImage = document.createElement("img");
-    productImage.src = product.image || "#";
-    productImage.alt = product.name;
 
-    const productInfo = document.createElement("div");
-    productInfo.classList.add("product-info");
+    productCard.innerHTML = `
+          <a href="product_description.html?id=${product._id}">
+            <img src="${product.image}" alt="${product.name}" />
+          </a>
+          <div class="product-info">
+            <p class="product-name">${product.name}</p>
+            <p class="product-price">${product.price.$numberDecimal} kr</p>
+          </div>
+    `
 
-    const productName = document.createElement("p");
-    productName.classList.add("product-name");
-    productName.textContent = product.name;
 
-    const price = product.price?.$numberDecimal || "Okänt pris";
-    const productPrice = document.createElement("p");
-    productPrice.classList.add("product-price");
-    productPrice.textContent = `${price} kr`;
+    // const productImage = document.createElement("img");
+    // productImage.src = product.image || "#";
+    // productImage.alt = product.name;
 
-    productInfo.appendChild(productName);
-    productInfo.appendChild(productPrice);
-    productCard.appendChild(productImage);
-    productCard.appendChild(productInfo);
+    // const productInfo = document.createElement("div");
+    // productInfo.classList.add("product-info");
+
+    // const productName = document.createElement("p");
+    // productName.classList.add("product-name");
+    // productName.textContent = product.name;
+
+    // const price = product.price?.$numberDecimal || "Okänt pris";
+    // const productPrice = document.createElement("p");
+    // productPrice.classList.add("product-price");
+    // productPrice.textContent = `${price} kr`;
+
+    // productInfo.appendChild(productName);
+    // productInfo.appendChild(productPrice);
+    // productCard.appendChild(productImage);
+    // productCard.appendChild(productInfo);
     productList.appendChild(productCard);
   });
 }
