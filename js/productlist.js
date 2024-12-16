@@ -5,10 +5,13 @@ filterAndDisplay("women");
 // 2. Modify the fech function to accept "sort" and "order" query parameters
 // 3. add event listener ("change") to the sort drop down
 
-const sortBtn = document.getElementById("sort-products")
-sortBtn.addEventListener("change", ()=>{
-    const [sortBy, order] = sortBtn.value.split("-")
-    //modified fetchanddisplay function
+// const sortBtn = document.getElementById("sort-products")
+// sortBtn.addEventListener("change", ()=>{
+//     const [sortBy, order] = sortBtn.value.split("-")
+//     //modified fetchanddisplay function
+// }
+
+
 const categoryMap = {
     "t-shirt": 't-shirt',
     shirts: 'shirts',
