@@ -1,5 +1,13 @@
-import { getProducts, productList, displayProducts, filterAndDisplay} from "./fetchProductData.js";
+import { getProducts, productList, displayProducts, filterAndDisplay, filteredProducts, sortProducts} from "./fetchProductData.js";
 filterAndDisplay("children");
+
+const sortDropdown = document.getElementById("sort-products")
+sortDropdown.addEventListener("change", (event)=>{
+    const sortBy = event.target.value
+    const sortedProducts = sortProducts(sortBy)
+    displayProducts(sortedProducts)
+})
+
 
 const categoryMap = {
     jackets: 'jackets',
