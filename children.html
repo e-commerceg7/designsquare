@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/productlist.css" />
     <title>Children Clothing</title>
 </head>
@@ -13,24 +14,25 @@
         <section class="filter">
           <div class="filter-wrapper" id="children-filter">
             <div class="children-filter">
-              <button type="button">Jackets</button>
-              <button type="button">Jeans</button>
-              <button type="button">Hoodies</button>
-              <button type="button">Shoes</button>
-              <button type="button">Pants</button>
-              <button type="button">Sweatshirts</button>
-              <button type="button">Shorts</button>
-              <button type="button">Sleepwear</button>
+              <button type="button" id="jackets">Jackets</button>
+              <button type="button" id="jeans">Jeans</button>
+              <button type="button" id="hoodies">Hoodies</button>
+              <button type="button" id="shoes">Shoes</button>
+              <button type="button" id="pants">Pants</button>
+              <button type="button" id="sweatshirts">Sweatshirts</button>
+              <button type="button" id="shorts">Shorts</button>
+              <button type="button" id="sleepwear">Sleepwear</button>
             </div>
           </div>
   
-          <select id="sort-products">
-            <option>Recommended</option>
-            <option>Newest</option>
-            <option>Lowest Price</option>
-            <option>Highest Price</option>
-          </select>
-        </section>
+          <div class="sort-wrapper">
+            <label for="sort-products">Sort by:</label>
+            <select id="sort-products">
+              <option value="date-desc">Newest</option>
+              <option value="price-asc">Lowest Price</option>
+              <option value="price-desc">Highest Price</option>
+            </select>
+          </div>
   
         <section class="product-list">
   <!-- 
@@ -46,6 +48,10 @@
     -->
         </section>
     </main>
+    <footer id="footer"></footer>
+
     <script type="module" src="js/children.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/footer.js"></script>
 </body>
 </html>
