@@ -1,7 +1,7 @@
 export async function getProducts() {
   try {
     const response = await fetch(
-      "https://ecommerce-api-seven-omega.vercel.app/products"
+      "http://ecommerce-api-ashy-ten.vercel.app/products"
     );
     if (!response.ok) {
       throw new Error("Något gick fel vid hämtning av produkterna");
@@ -52,13 +52,17 @@ export async function filterAndDisplay(category1, category2 = null) {
 
   // Filtrera baserat på kategori
   const filteredProducts = products.filter((product) =>
-    category2 
-      ? product.categories.includes(category1) && product.categories.includes(category2)
+    category2
+      ? product.categories.includes(category1) &&
+        product.categories.includes(category2)
       : product.categories.includes(category1)
   );
 
   if (category2) {
-    console.log(`Produkter i kategori ${category1} och ${category2}:`, filteredProducts);
+    console.log(
+      `Produkter i kategori ${category1} och ${category2}:`,
+      filteredProducts
+    );
   } else {
     console.log(`Produkter i kategori ${category1}:`, filteredProducts);
   }
@@ -71,8 +75,11 @@ export async function filterAndDisplaySearch(search) {
   search = search.toLowerCase();
 
   // Filtrera baserat på kategori or name or color
-  const filteredProducts = products.filter((product) =>
-   product.categories.includes(search) || product.name.toLowerCase() === search || product.color.toLowerCase() === search
+  const filteredProducts = products.filter(
+    (product) =>
+      product.categories.includes(search) ||
+      product.name.toLowerCase() === search ||
+      product.color.toLowerCase() === search
   );
 
   console.log(`Produkter with search ${search}:`, filteredProducts);

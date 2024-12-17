@@ -1,27 +1,23 @@
 import { getProducts } from "./fetchProductData.js";
-import { getCreateProductURL } from "./routes/createNewProduct.js";
 
-// Hämta formulär och knapp logik för att lägga till en produkt
+// Hämta formulär och knappar
 const addProductButton = document.querySelector(".add-product-button-admin");
 const addProductForm = document.getElementById("add-product-form");
 
+// Globala variabler för redigering
+let isEditing = false;
+let editingProductId = null;
+
+// Visa/dölj formuläret för att lägga till/redigera produkt
 addProductButton.addEventListener("click", () => {
-  if (
-    addProductForm.style.display === "none" ||
-    addProductForm.style.display === ""
-  ) {
-    addProductForm.style.display = "block"; // Visa formuläret för att lägga till en produkt
-    addProductButton.style.display = "none"; // Dölj knappen
-  } else {
-    addProductForm.style.display = "none"; // Dölj formuläret
-    addProductButton.style.display = "block"; // Visa knappen igen
-  }
+  resetForm();
+  toggleFormVisibility();
 });
 
+// Hantera formulärets submit (skapa eller uppdatera produkt)
 addProductForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  // Hämta formulärvärden
   const name = document.getElementById("product-name").value;
   const description = document.getElementById("product-description").value;
   const price = document.getElementById("product-price").value;
@@ -33,40 +29,94 @@ addProductForm.addEventListener("submit", async (e) => {
     .map((category) => category.trim());
   const image = document.getElementById("product-image").value;
 
-  // Skicka POST-begäran till backend för att lägga till produkten
+  const updatedProduct = {
+    name,
+    description,
+    price,
+    color,
+    stock,
+    categories,
+    image,
+  };
+
+  if (isEditing) {
+    await updateProduct(editingProductId, updatedProduct); // Anropa den externa updateProduct-funktionen
+  } else {
+    await createProduct(updatedProduct); // Skapa ny produkt om vi inte är i redigeringsläge
+  }
+});
+
+// Skapa en ny produkt
+async function createProduct(productData) {
   try {
-    const url = await getCreateProductURL();
+    const url = "https://ecommerce-api-ashy-ten.vercel.app/products";
     const response = await fetch(url, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name,
-        description,
-        price,
-        color,
-        stock,
-        categories,
-        image,
-      }),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(productData),
     });
 
     if (response.ok) {
-      const newProduct = await response.json();
-      console.log("Product added:", newProduct);
-      showAllProducts(); // Uppdatera produktlistan
-      addProductForm.style.display = "none"; // Dölja formuläret
+      console.log("Product added successfully.");
+      showAllProducts();
+      resetForm();
     } else {
-      console.error("Error adding product");
+      console.error("Failed to add product.");
     }
   } catch (error) {
     console.error("Error:", error);
   }
-});
+}
+
+async function updateProduct(productId, productData) {
+  try {
+    // Här ska du definiera din API-url för att uppdatera produkten.
+    const url = `https://ecommerce-api-ashy-ten.vercel.app/products/${productId}`;
+
+    const response = await fetch(url, {
+      method: "PUT", // Använd PUT för att uppdatera en produkt
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(productData),
+    });
+
+    if (response.ok) {
+      console.log("Product updated successfully.");
+      showAllProducts(); // Uppdatera produktlistan
+      resetForm(); // Återställ formuläret
+    } else {
+      console.error("Failed to update product.");
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+
+async function deleteProduct(productId) {
+  try {
+    // URL för att identifiera produkten i databasen och radera den
+    const url = `https://ecommerce-api-ashy-ten.vercel.app/products/${productId}`;
+
+    const response = await fetch(url, {
+      method: "DELETE", // Använd DELETE för att radera en produkt
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (response.ok) {
+      console.log("Product deleted successfully.");
+      showAllProducts(); // Uppdatera produktlistan
+    } else {
+      console.error("Failed to delete product. Status:", response.status);
+    }
+  } catch (error) {
+    console.error("Error during product deletion:", error);
+  }
+}
 
 // Hämta alla produkter och visa dem
-const productList = document.querySelector(".admin-product-list");
 async function showAllProducts() {
   try {
     const products = await getProducts();
@@ -74,145 +124,81 @@ async function showAllProducts() {
     if (products && products.length > 0) {
       displayProducts(products);
     } else {
-      productList.innerHTML = "<p>Inga produkter tillgängliga</p>";
+      console.log("Inga produkter tillgängliga.");
     }
   } catch (error) {
     console.error("Fel vid hämtning av produkter:", error);
-    productList.innerHTML = "<p>Fel vid hämtning av produkter</p>";
   }
 }
 
 function displayProducts(products) {
-  productList.innerHTML = "";
+  const productList = document.querySelector(".admin-product-list");
+  if (!productList) return;
+
+  productList.innerHTML = ""; // Rensa befintlig lista
 
   products.forEach((product) => {
     const productCard = document.createElement("div");
     productCard.classList.add("product-card");
 
-    const productImage = document.createElement("img");
-    productImage.src = product.image || "#";
-    productImage.alt = product.name;
+    productCard.innerHTML = `
+      <img src="${product.image}" alt="${product.name}" />
+      <h3>${product.name}</h3>
+      <p>${product.description || "Ingen beskrivning"}</p>
+      <p><strong>Pris:</strong> ${product.price.$numberDecimal} kr</p>
+   
 
-    const productInfo = document.createElement("div");
-    productInfo.classList.add("product-info");
+      <button class="edit-btn">Edit</button>
+      <button class="delete-btn">Delete</button>
+    `;
 
-    const productName = document.createElement("p");
-    productName.classList.add("product-name");
-    productName.textContent = product.name;
-
-    const productPrice = document.createElement("p");
-    productPrice.classList.add("product-price");
-    productPrice.textContent = `${
-      product.price?.$numberDecimal || "Okänt pris"
-    } kr`;
-
-    productInfo.appendChild(productName);
-    productInfo.appendChild(productPrice);
-    productCard.appendChild(productImage);
-    productCard.appendChild(productInfo);
-
-    const buttonContainer = document.createElement("div");
-    buttonContainer.classList.add("button-container");
-
-    // Edit-knapp
-    const editButton = document.createElement("button");
-    editButton.classList.add("edit-button");
-    editButton.textContent = "Edit";
-    editButton.addEventListener("click", () => {
-      editProductForm(product);
+    // Koppla knappar till funktioner
+    productCard.querySelector(".edit-btn").addEventListener("click", () => {
+      setEditForm(product);
     });
 
-    // Delete-knapp
-    const deleteButton = document.createElement("button");
-    deleteButton.classList.add("delete-button");
-    deleteButton.textContent = "Delete";
-    deleteButton.addEventListener("click", () => {
+    productCard.querySelector(".delete-btn").addEventListener("click", () => {
       deleteProduct(product._id);
     });
-
-    buttonContainer.appendChild(editButton);
-    buttonContainer.appendChild(deleteButton);
-    productCard.appendChild(buttonContainer);
 
     productList.appendChild(productCard);
   });
 }
 
-showAllProducts();
+// Sätt formulär för redigering
+function setEditForm(product) {
+  isEditing = true; // Indikerar att vi redigerar en produkt
+  editingProductId = product._id; // Sparar produktens ID för uppdatering
 
-// Funktion för att uppdatera produkt
-async function editProductForm(product) {
-  // Visa formulär för att redigera produkt
-  addProductForm.style.display = "block";
-  document.getElementById("product-name").value = product.name;
-  document.getElementById("product-description").value = product.description;
+  // Fyll formuläret med befintliga produktvärden
+  document.getElementById("product-name").value = product.name || "";
+  document.getElementById("product-description").value =
+    product.description || "";
   document.getElementById("product-price").value =
-    product.price?.$numberDecimal;
-  document.getElementById("product-color").value = product.color;
-  document.getElementById("product-stock").value = product.stock;
+    product.price?.$numberDecimal || product.price || "";
+  document.getElementById("product-color").value = product.color || "";
+  document.getElementById("product-stock").value = product.stock || "";
   document.getElementById("product-categories").value =
-    product.categories.join(",");
-  document.getElementById("product-image").value = product.image;
+    product.categories?.join(", ") || "";
+  document.getElementById("product-image").value = product.image || "";
 
-  // Ändra formulärets submit-funktion för att uppdatera produkten
-  addProductForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const name = document.getElementById("product-name").value;
-    const description = document.getElementById("product-description").value;
-    const price = document.getElementById("product-price").value;
-    const color = document.getElementById("product-color").value;
-    const stock = document.getElementById("product-stock").value;
-    const categories = document
-      .getElementById("product-categories")
-      .value.split(",");
-    const image = document.getElementById("product-image").value;
-
-    try {
-      const response = await fetch(`${getProducts()}/${product._id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          description,
-          price,
-          color,
-          stock,
-          categories,
-          image,
-        }),
-      });
-
-      if (response.ok) {
-        const updatedProduct = await response.json();
-        console.log("Product updated:", updatedProduct);
-        showAllProducts(); // Uppdatera produktlistan
-        addProductForm.style.display = "none"; // Dölja formuläret
-      } else {
-        console.error("Error updating product");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  });
+  toggleFormVisibility(true); // Visa formuläret
 }
 
-// Funktion för att radera produkt
-async function deleteProduct(productId) {
-  try {
-    const response = await fetch(`${getProducts()}/${productId}`, {
-      method: "DELETE",
-    });
+// Återställ formuläret
+function resetForm() {
+  isEditing = false;
+  editingProductId = null;
+  addProductForm.reset();
+}
 
-    if (response.ok) {
-      console.log("Product deleted");
-      showAllProducts(); // Uppdatera produktlistan
-    } else {
-      console.error("Error deleting product");
-    }
-  } catch (error) {
-    console.error("Error:", error);
+// Växla synlighet på formuläret
+function toggleFormVisibility(show = false) {
+  if (show || addProductForm.style.display === "none") {
+    addProductForm.style.display = "block";
+  } else {
+    addProductForm.style.display = "none";
   }
 }
+
+showAllProducts();
