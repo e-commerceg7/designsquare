@@ -10,6 +10,7 @@ sortDropdown.addEventListener("change", (event)=>{
 
 
 const categoryMap = {
+    children: 'children',
     jackets: 'jackets',
     jeans: 'jeans',
     hoodies: 'hoodies',
@@ -27,6 +28,3 @@ Object.keys(categoryMap).forEach(id => {
     })
 })
 
-
-
-// --
