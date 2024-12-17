@@ -5,23 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/footer.css">
     <title>DESIGNSQUARE</title>
 </head>
 
 <body>
-    <header></header>
+    <header id="navbar"></header>
     <section class="main">
         <form id="form-login" target="_self">
             <label for="username">Username</label>
             <input type="text" id="inputUsername" name="username" value="" required>
             <label for="password">Password</label>
-            <input type="text" id="inputPassword" name="password" autocomplete="on" value="" required>
+            <input type="text" id="inputPassword" name="password" value="" required>
             <button class="submit-button" type="submit" value="Submit">Log in</button>
         </form>
     </section>
-    <script src="js/login.js"></script>
 
-    <footer></footer>
+    <footer id="footer"></footer>
+    <script src="js/login.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/footer.js"></script>
 </body>
 
 </html>
+<!--  -->
