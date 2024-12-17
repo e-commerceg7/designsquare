@@ -41,17 +41,7 @@ export function displayProducts(products) {
   });
 }
 
-
 export let filteredProducts = []
-export async function filterProducts (category) {
-  const products = await getProducts()
-  filteredProducts = products.filter((product) => 
-    product.categories.includes(category)
-  )
-  console.log("women clothing", filteredProducts);
-  return filteredProducts
-}
-
 
 export async function filterAndDisplay(category1, category2 = null) {
   const products = await getProducts();
@@ -107,10 +97,19 @@ export async function filterAndDisplaySearch(search) {
 
 
 
-//  functions for loading category-buttons on productlist page
+// Below are functions for loading category-buttons on product-list pages
 
 export let currentProducts = []
 export const filterContainer = document.getElementById("filter-container")
+
+export async function filterProducts (category) {
+  const products = await getProducts()
+  filteredProducts = products.filter((product) => 
+    product.categories.includes(category)
+  )
+  return filteredProducts
+}
+
 
 export async function loadingFilter(category){
   currentProducts = await filterProducts(category)
