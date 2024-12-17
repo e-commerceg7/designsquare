@@ -75,13 +75,13 @@ nav .link-box {
   gap: 20px;
 }
 
-form.input-box {
+.input-box {
   display: flex;
   align-items: center;
 
 }
 
-form.input-box input[type=text] {
+.input-box input[type=text] {
   padding: 10px;
   font-size: 14px;
   border: none;
@@ -89,7 +89,7 @@ form.input-box input[type=text] {
   width: 50%px;
 }
 
-form.input-box button {
+.input-box button {
   padding: 9.9px;
   background: #f1f1f1;
   color: rgb(0, 0, 0);
@@ -99,7 +99,7 @@ form.input-box button {
   cursor: pointer;
 }
 
-form.input-box button:hover {
+.input-box button:hover {
   background-color: #0bda68;
   transition: background-color 0.3s ease;
 }
