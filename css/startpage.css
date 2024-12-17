@@ -1,3 +1,4 @@
+/* Hero div with image inside */
 .hero{
     position: relative;
     width: 90%;
@@ -8,6 +9,7 @@
     background-position: center -130px;
     background-repeat: no-repeat;
 }
+/* Text inside .hero */
 .hero-overlay{
     position: absolute;
     top: 20%;
@@ -17,6 +19,7 @@
     text-shadow: 1px 1px 4px rgb(246, 241, 241);
     text-align: center;
 }
+/* Section around department divs */
 .departments{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -24,6 +27,7 @@
     margin: 10px auto;
     gap: 10px;
 }
+/* All text inside department section */
 .departments * {
     align-content: center;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
@@ -32,6 +36,7 @@
     text-align: center;
     font-size: 40;
 }
+/* Image men div */
 .men{
     width: 100%;
     height: 300px;
@@ -39,6 +44,7 @@
     background-size: cover;
     background-repeat: no-repeat;
 }
+/* Image women div */
 .women{
     width: 100%;
     height: 300px;
@@ -46,6 +52,7 @@
     background-size: cover;
     background-repeat: no-repeat;
 }
+/* Image children div */
 .child{
     width: 100%;
     height: 300px;
@@ -53,6 +60,7 @@
     background-size: cover;
     background-repeat: no-repeat;
 }
+/* Links */
 .department-links{
     display: block;
     height: -webkit-fill-available;
