@@ -51,7 +51,7 @@ async function createProduct(productData) {
   try {
     const url = "https://ecommerce-api-ashy-ten.vercel.app/products";
     const response = await fetch(url, {
-      method: "POST",
+      method: "POST", // POST för att skapa en produkt
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(productData),
     });
@@ -70,11 +70,11 @@ async function createProduct(productData) {
 
 async function updateProduct(productId, productData) {
   try {
-    // Här ska du definiera din API-url för att uppdatera produkten.
+    // definierar API-url för att uppdatera produkten.
     const url = `https://ecommerce-api-ashy-ten.vercel.app/products/${productId}`;
 
     const response = await fetch(url, {
-      method: "PUT", // Använd PUT för att uppdatera en produkt
+      method: "PUT", // Använd PUT för att uppdatera en produkt (express PUT för att uppdatera)
       headers: {
         "Content-Type": "application/json",
       },
