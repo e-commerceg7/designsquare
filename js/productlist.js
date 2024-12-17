@@ -31,3 +31,5 @@ Object.keys(categoryMap).forEach(id => {
         filterAndDisplay('women', categoryMap[id])
     })
 })
+
+// --

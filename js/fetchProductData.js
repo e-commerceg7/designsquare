@@ -83,3 +83,4 @@ export async function filterAndDisplaySearch(search) {
   console.log(`Produkter with search ${search}:`, filteredProducts);
   displayProducts(filteredProducts);
 }
+// --
