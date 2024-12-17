@@ -10,6 +10,7 @@ sortDropdown.addEventListener("change", (event)=>{
 })
 
 const categoryMap = {
+    women: 'women',
     "t-shirt": 't-shirt',
     shirts: 'shirts',
     activewear: 'activewear',
