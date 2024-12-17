@@ -1,6 +1,8 @@
 
-const urlParams = new URLSearchParams(window.location.Search); //get URL sent from productlist page
-const productId = "675874568c163b7fe8d0b275" /* urlParams.get("id"); */ //Extract the product id
+const urlParams = new URLSearchParams(window.location.search); //get URL sent from productlist page
+const productId = urlParams.get("id");
+
+
 /* const currentProduct = getProduct(productId);  */
 
 loadPage(productId) //add dynamic content to page
@@ -26,13 +28,10 @@ function displayProduct(product){
     //Display the current products details on the page
     itemImage.src = productData.image;
     productDetails.innerHTML = `
-        <article id="product-details">
-            <section id="description-header">
                 <h1 id="item-name">${productData.name}</h1>
                 <h2 id="color">${productData.color}</h2>
                 <h2 id="price">${productData.price.$numberDecimal} kr</h2>
                 <p id="description">${productData.description}</p>
-                </section>
     `    
 };
 
@@ -42,8 +41,6 @@ const shoppingCart = {
     checkIfInCart: function (customerCart, productId){
         
             const itemIndex = customerCart.findIndex(item => item.id === productId && item.size === document.getElementById("size").value);
-            
-            console.log(productId)
             return itemIndex;
     },
     addToCart: async function (currentProduct){
