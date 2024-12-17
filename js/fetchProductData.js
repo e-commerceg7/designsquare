@@ -18,6 +18,11 @@ export const productList = document.querySelector(".product-list");
 
 export function displayProducts(products) {
   productList.innerHTML = "";
+  
+  if(products.length === 0) {
+     productList.innerHTML = "<p>Sorry, we couldn't find any products here.</p>"
+  }
+
   products.forEach((product) => {
     const productCard = document.createElement("div");
     productCard.classList.add("product-card");
