@@ -15,12 +15,10 @@
     height: auto;
 }
 
-#product-details{
-    max-width: 30%;
-}
+
 
 #description-header{
-    margin-bottom: 60px;
+    margin-bottom: 30px;
 }
 
 #description-header h1{
@@ -32,7 +30,7 @@
 }
 
 #description{
-    margin-bottom: 20px;
+    margin: 20px 0;
 }
 
 .to-cart-btn{
