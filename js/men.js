@@ -10,6 +10,7 @@ sortDropdown.addEventListener("change", (event)=>{
 
 
 const categoryMap = {
+    men: 'men',
     jeans: 'jeans',
     shorts: 'shorts',
     polo: 'polo',
@@ -28,5 +29,3 @@ Object.keys(categoryMap).forEach(id => {
         filterAndDisplay('men', categoryMap[id])
     })
 })
-
-// --
