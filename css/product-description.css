@@ -15,8 +15,6 @@
     height: auto;
 }
 
-
-
 #description-header{
     margin-bottom: 30px;
 }
@@ -31,6 +29,18 @@
 
 #description{
     margin: 20px 0;
+}
+
+#size{
+    margin: 5px 0;
+}
+
+#stock.inStock{
+    color: green;
+}
+
+#stock.outOfStock{
+    color: darkred;
 }
 
 .to-cart-btn{

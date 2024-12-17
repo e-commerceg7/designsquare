@@ -3,8 +3,6 @@ const urlParams = new URLSearchParams(window.location.search); //get URL sent fr
 const productId = urlParams.get("id");
 
 
-/* const currentProduct = getProduct(productId);  */
-
 loadPage(productId) //add dynamic content to page
 
 async function loadPage(productId){
@@ -32,7 +30,18 @@ function displayProduct(product){
                 <h2 id="color">${productData.color}</h2>
                 <h2 id="price">${productData.price.$numberDecimal} kr</h2>
                 <p id="description">${productData.description}</p>
-    `    
+    ` 
+    
+    //Check if in stock and display the result on page
+    const inStockSection = document.getElementById("stock");
+    const inStock = product.stock;
+    if(inStock > 0) {
+        inStockSection.classList.add("inStock");
+        inStockSection.innerText = "In stock" 
+    } else {
+        inStockSection.classList.add("outOfStock");
+        inStockSection.innerText = "Out of stock"
+    }
 };
 
 //Object with the different functions for the shopping cart
@@ -61,7 +70,7 @@ const shoppingCart = {
             }
             
             localStorage.setItem(this.name, JSON.stringify(customerCart));
-    }
+    },
 };
 
 
