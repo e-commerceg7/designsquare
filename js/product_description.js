@@ -1,6 +1,8 @@
 
-const urlParams = new URLSearchParams(window.location.Search); //get URL sent from productlist page
+const urlParams = new URLSearchParams(window.location.search); //get URL sent from productlist page
 const productId = urlParams.get("id");
+
+
 /* const currentProduct = getProduct(productId);  */
 
 loadPage(productId) //add dynamic content to page
