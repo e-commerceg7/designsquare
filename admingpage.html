@@ -10,23 +10,65 @@
     />
     <title>DESIGNSQUARE</title>
   </head>
-  <nav id="admin-nav">
-    <div class="search-box">
-      <form class="input-box">
-        <input type="text" placeholder="Search.." name="search" />
-        <button type="submit"><i class="fa fa-search"></i></button>
-      </form>
-
-      <a href="login.html" class="checkout-button">Log out</a>
-    </div>
-  </nav>
   <body>
+    <nav id="admin-nav">
+      <div class="search-box">
+        <form class="input-box">
+          <input type="text" placeholder="Search.." name="search" />
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+        <a href="login.html" class="checkout-button">Log out</a>
+      </div>
+    </nav>
+
+    <!-- Sektion för att lägga till produkt -->
     <section class="create-product-admin">
       <button class="add-product-button-admin">Add product +</button>
+      <form id="add-product-form" style="display: none">
+        <input
+          type="text"
+          id="product-name"
+          placeholder="Product Name"
+          required
+        />
+        <input
+          type="text"
+          id="product-description"
+          placeholder="Product Description"
+        />
+        <input
+          type="number"
+          id="product-price"
+          placeholder="Product Price"
+          required
+        />
+        <input type="text" id="product-color" placeholder="Product Color" />
+        <input
+          type="number"
+          id="product-stock"
+          placeholder="Product Stock"
+          required
+        />
+        <input
+          type="text"
+          id="product-categories"
+          placeholder="Product Categories (comma separated)"
+        />
+        <input type="url" id="product-image" placeholder="Product Image URL" />
+        <button type="submit">Add Product</button>
+      </form>
     </section>
-    <div class="admin-product-list"></div>
+
+    <!-- Sektion för produktlistan -->
+    <section class="admin-product-list-section">
+      <div class="admin-product-list">
+        <!-- Dynamiskt genererade produktkort kommer att visas här -->
+      </div>
+    </section>
 
     <footer></footer>
+
     <script type="module" src="./js/adminproductlist.js"></script>
   </body>
 </html>
+<!-- -- -->

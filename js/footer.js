@@ -26,3 +26,4 @@ document.addEventListener("DOMContentLoaded", () => {
             footerElement.innerHTML = "<p>Error loading footer.</p>";
         });
 });
+// --
