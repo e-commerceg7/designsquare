@@ -1,56 +1,8 @@
-import { getProducts, productList, displayProducts, filterAndDisplay, filteredProducts, sortProducts} from "./fetchProductData.js";
-
-let currentProducts = []
-const filterContainer = document.getElementById("filter-container")
+import { getProducts, productList, displayProducts, filterAndDisplay, filteredProducts, sortProducts, filterProducts, loadingFilter, getSubcategories, createCategoryFilter, currentProducts, filterContainer} from "./fetchProductData.js";
 
 
-filterAndDisplay("women");
-currentProducts = filterProducts("women")
-console.log(`current products are: ${currentProducts}`)
-const subcategories = getSubcategories(currentProducts)
-createCategoryFilter(subcategories)
-
-
-async function filterProducts (category){
-    const products = await getProducts()
-    filteredProducts = products.filter((product) =>
-        product.categories.includes(category)
-      );
-    
-    return products
-  }
-
-
-function getSubcategories (products) {
-    const subcategories = new Set()
-    products.forEach((product)=>{
-        if(product.categories[1]) {
-            subcategories.add(product.categories[1])
-        }
-    })
-    return Array.from(subcategories)
-    console.log(subcategories)
-}
-
-function createCategoryFilter(subcategories){
-    filterContainer.innerHTML = ""
-    subcategories.forEach((subcategory) => {
-        const button = document.createElement("button")
-        button.textContent = subcategory
-        button.classList.add("category-button")
-        button.addEventListener("click", ()=>{
-            filterAndDisplay("women", subcategory)
-        })
-        filterContainer.appendChild(button)
-    })
-}
-
-// button.addEventListener("click", ()=>{
-//     filterAndDisplay('women', categoryMap[id])
-// })
-
-
-
+filterAndDisplay("women")
+loadingFilter("women")
 
 const sortDropdown = document.getElementById("sort-products")
 sortDropdown.addEventListener("change", (event)=>{

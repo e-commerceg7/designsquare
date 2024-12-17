@@ -43,6 +43,16 @@ export function displayProducts(products) {
 
 
 export let filteredProducts = []
+export async function filterProducts (category) {
+  const products = await getProducts()
+  filteredProducts = products.filter((product) => 
+    product.categories.includes(category)
+  )
+  console.log("women clothing", filteredProducts);
+  return filteredProducts
+}
+
+
 export async function filterAndDisplay(category1, category2 = null) {
   const products = await getProducts();
 
@@ -93,4 +103,47 @@ export async function filterAndDisplaySearch(search) {
 
   console.log(`Produkter with search ${search}:`, filteredProducts);
   displayProducts(filteredProducts);
+}
+
+
+
+//  functions for loading category-buttons on productlist page
+
+export let currentProducts = []
+export const filterContainer = document.getElementById("filter-container")
+
+export async function loadingFilter(category){
+  currentProducts = await filterProducts(category)
+  const subcategories = getSubcategories(currentProducts)
+  console.log(subcategories)
+  createCategoryFilter(subcategories)
+}
+
+export function getSubcategories (products) {
+  console.log( "Received products:", products)
+  if(!Array.isArray(products)) {
+      console.error("Error: Expected an array, but received:", products);
+      return [];
+  }
+  const subcategories = new Set()
+  products.forEach((product)=>{
+      if(product.categories[1]) {
+          subcategories.add(product.categories[1])
+      }
+  })
+  console.log(subcategories)
+  return Array.from(subcategories)
+}
+
+export function createCategoryFilter(subcategories){
+  filterContainer.innerHTML = ""
+  subcategories.forEach((subcategory) => {
+      const button = document.createElement("button")
+      button.textContent = subcategory
+      button.classList.add("category-button")
+      button.addEventListener("click", ()=>{
+          filterAndDisplay("women", subcategory)
+      })
+      filterContainer.appendChild(button)
+  })
 }
