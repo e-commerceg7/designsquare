@@ -37,7 +37,6 @@
     height: 300px;
     background-image: url(../img/man.jpg);
     background-size: cover;
-    background-position: center;
     background-repeat: no-repeat;
 }
 .women{
@@ -45,7 +44,6 @@
     height: 300px;
     background-image: url(../img/woman.jpg);
     background-size: cover;
-    background-position: center;
     background-repeat: no-repeat;
 }
 .child{
@@ -53,6 +51,12 @@
     height: 300px;
     background-image: url(../img/child.jpg);
     background-size: cover;
-    background-position: center;
     background-repeat: no-repeat;
+}
+.department-links{
+    display: block;
+    height: -webkit-fill-available;
+}
+h1{
+    font-size: 50px;
 }
