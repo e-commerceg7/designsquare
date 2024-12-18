@@ -1,5 +1,5 @@
 /* Hero div with image inside */
-.hero{
+.hero {
     position: relative;
     width: 90%;
     margin: 0 auto;
@@ -9,8 +9,9 @@
     background-position: center -130px;
     background-repeat: no-repeat;
 }
+
 /* Text inside .hero */
-.hero-overlay{
+.hero-overlay {
     position: absolute;
     top: 20%;
     left: 50px;
@@ -18,52 +19,112 @@
     text-shadow: 1px 1px 4px rgb(246, 241, 241);
     text-align: center;
 }
+
 /* Section around department divs */
-.departments{
+.departments {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     width: 90%;
     margin: 10px auto;
     gap: 10px;
 }
+
 /* All text inside department section */
 .departments * {
     align-content: center;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: black;
     text-shadow: 1px 1px 4px rgb(246, 241, 241);
     text-align: center;
     font-size: 40;
 }
+
 /* Image men div */
-.men{
+.men {
     width: 100%;
     height: 300px;
     background-image: url(../img/man.jpg);
     background-size: cover;
     background-repeat: no-repeat;
 }
+
 /* Image women div */
-.women{
+.women {
     width: 100%;
     height: 300px;
     background-image: url(../img/woman.jpg);
     background-size: cover;
     background-repeat: no-repeat;
 }
+
 /* Image children div */
-.child{
+.child {
     width: 100%;
     height: 300px;
     background-image: url(../img/child.jpg);
     background-size: cover;
     background-repeat: no-repeat;
 }
+
 /* Links */
-.department-links{
+.department-links {
     display: block;
     height: -webkit-fill-available;
 }
-h1{
+
+h1 {
     font-size: 50px;
+}
+
+/* Tablet */
+@media (max-width: 1024px) and (min-width: 768px) {
+    .departments {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+
+    .departments * {
+        font-size: 35px;
+    }
+
+    .hero {
+        height: 60vh;
+    }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+    .hero {
+        height: 50vh;
+        background-position: center;
+    }
+
+    .hero-overlay {
+        top: 10%;
+        left: 20px;
+        text-align: left;
+    }
+
+    .hero-overlay h1 {
+        font-size: 32px;
+    }
+
+    .departments {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .departments * {
+        font-size: 30px;
+    }
+
+    .men,
+    .women,
+    .child {
+        height: 200px;
+    }
+
+    h1 {
+        font-size: 36px;
+    }
 }
