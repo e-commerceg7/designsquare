@@ -1,53 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/productlist.css" />
+    <link rel="stylesheet" href="css/productlist.css">
+    <link rel="stylesheet" href="css/women.css">
     <title>Women Clothing</title>
   </head>
   <body>
     <header id="navbar"></header>
     <main>
       <section class="filter">
-        <div class="filter-wrapper active" id="women-filter">
-          <div class="women-filter">
-            <button type="button" id="t-shirt">T-Shirts</button>
-            <button type="button" id="shirts">Blouse</button>
-            <button type="button" id="activewear">Activewear</button>
-            <button type="button" id="dresses">Dresses</button>
-            <button type="button" id="leggings">Leggings</button>
-            <button type="button" id="skirts">Skirts</button>
-            <button type="button" id="cardigans">Cardigans</button>
-            <button type="button" id="jackets">Jackets</button>
-            <button type="button" id="sweaters">Sweaters</button>
+          <div class="women-filter" id="filter-container">
+<!-- using JS to create category-filter buttons -->
           </div>
-        </div>
-        <div class="sort-wrapper">
+
+          <div class="sort-wrapper">
           <label for="sort-products">Sort by:</label>
           <select id="sort-products">
+            <option>Recommended</option>
             <option value="date-desc">Newest</option>
             <option value="price-asc">Lowest Price</option>
             <option value="price-desc">Highest Price</option>
           </select>
         </div>
-
       </section>
 
       <section class="product-list">
-<!-- 
-        <div class="product-card">
-          <a href="#">
-            <img src="img/test img.png" alt="" />
-          </a>
-          <div class="product-info">
-            <p class="product-name">Oversized T-shirt</p>
-            <p class="product-price">500 kr</p>
-          </div>
-        </div>
-  -->
+<!-- using JS to get and dispaly products-->
       </section>
     </main>
 

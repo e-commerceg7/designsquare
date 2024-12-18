@@ -18,6 +18,11 @@ export const productList = document.querySelector(".product-list");
 
 export function displayProducts(products) {
   productList.innerHTML = "";
+  
+  if(products.length === 0) {
+     productList.innerHTML = "<p>Sorry, we couldn't find any products here.</p>"
+  }
+
   products.forEach((product) => {
     const productCard = document.createElement("div");
     productCard.classList.add("product-card");
@@ -25,7 +30,7 @@ export function displayProducts(products) {
 
     productCard.innerHTML = `
           <a href="product_description.html?id=${product._id}">
-            <img src="${product.image}" alt="${product.name}" />
+            <img src="${product.image}" alt="${product.name}" loading="lazy"/>
           </a>
           <div class="product-info">
             <p class="product-name">${product.name}</p>
@@ -36,8 +41,8 @@ export function displayProducts(products) {
   });
 }
 
-
 export let filteredProducts = []
+
 export async function filterAndDisplay(category1, category2 = null) {
   const products = await getProducts();
 
@@ -59,18 +64,6 @@ export async function filterAndDisplay(category1, category2 = null) {
   displayProducts(filteredProducts);
 }
 
-export function sortProducts(sortBy) {
-  const sortedProducts = [...filteredProducts]
-  if (sortBy === "date-desc") {
-    sortedProducts.sort((a, b) => new Date(b.date) - new Date(a.date))
-  } else if (sortBy === "price-asc") {
-    sortedProducts.sort((a, b)=> a.price.$numberDecimal - b.price.$numberDecimal)
-  } else if (sortBy === "price-desc") {
-    sortedProducts.sort((a, b)=> b.price.$numberDecimal - a.price.$numberDecimal)
-  }
-
-  return sortedProducts
-}
 
 
 export async function filterAndDisplaySearch(search) {
@@ -92,5 +85,81 @@ export async function filterAndDisplaySearch(search) {
 
 
 
+// Below are functions for loading category-buttons on product-list pages
+
+export let currentProducts = []
+export const filterContainer = document.getElementById("filter-container")
+
+export async function filterProducts (category) {
+  const products = await getProducts()
+  filteredProducts = products.filter((product) => 
+    product.categories.includes(category)
+  )
+  return filteredProducts
+}
 
 
+export async function loadingFilter(category){
+  currentProducts = await filterProducts(category)
+  const subcategories = getSubcategories(currentProducts)
+  console.log(subcategories)
+  createCategoryFilter(category, subcategories)
+}
+
+export function getSubcategories (products) {
+  console.log( "Received products:", products)
+  if(!Array.isArray(products)) {
+      console.error("Error: Expected an array, but received:", products);
+      return [];
+  }
+  const subcategories = new Set()
+  products.forEach((product)=>{
+      if(product.categories[1]) {
+          subcategories.add(product.categories[1])
+      }
+  })
+  console.log(subcategories)
+  return Array.from(subcategories)
+}
+
+export function createCategoryFilter(category, subcategories){
+  filterContainer.innerHTML = ""
+  const allCategoryBtn = document.createElement("button")
+  allCategoryBtn.textContent = "All Categories"
+  allCategoryBtn.classList.add("category-button")
+  allCategoryBtn.addEventListener("click", ()=>[
+    filterAndDisplay(category)
+  ])
+  filterContainer.appendChild(allCategoryBtn)
+
+  subcategories.forEach((subcategory) => {
+      const button = document.createElement("button")
+      button.textContent = subcategory
+      button.classList.add("category-button")
+      button.addEventListener("click", ()=>{
+          filterAndDisplay(category, subcategory)
+      })
+      filterContainer.appendChild(button)
+  })
+  
+}
+
+// functions for sort-dropdown on product-list pages
+export const sortDropdown = document.getElementById("sort-products")
+sortDropdown.addEventListener("change", (event)=>{
+    const sortBy = event.target.value
+    const sortedProducts = sortProducts(sortBy)
+    displayProducts(sortedProducts)
+})
+
+export function sortProducts(sortBy) {
+  const sortedProducts = [...filteredProducts]
+  if (sortBy === "date-desc") {
+    sortedProducts.sort((a, b) => new Date(b.date) - new Date(a.date))
+  } else if (sortBy === "price-asc") {
+    sortedProducts.sort((a, b)=> a.price.$numberDecimal - b.price.$numberDecimal)
+  } else if (sortBy === "price-desc") {
+    sortedProducts.sort((a, b)=> b.price.$numberDecimal - a.price.$numberDecimal)
+  }
+  return sortedProducts
+}
