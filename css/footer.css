@@ -21,3 +21,7 @@ footer {
 #footer-social-media img{
     filter: invert(100%);
 }
+#footer-social-media *:hover {
+    transform: scale(1.5);
+    transition: transform 0.3s ease;
+}
