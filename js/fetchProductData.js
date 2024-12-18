@@ -30,7 +30,7 @@ export function displayProducts(products) {
 
     productCard.innerHTML = `
           <a href="product_description.html?id=${product._id}">
-            <img src="${product.image}" alt="${product.name}" />
+            <img src="${product.image}" alt="${product.name}" loading="lazy"/>
           </a>
           <div class="product-info">
             <p class="product-name">${product.name}</p>
