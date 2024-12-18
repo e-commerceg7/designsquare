@@ -5,7 +5,7 @@ import { getProducts, productList, displayProducts,
     sortDropdown} from "./fetchProductData.js";
 
 
-filterAndDisplay("women")
 loadingFilter("women")
+filterAndDisplay("women")
 
 

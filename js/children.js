@@ -4,8 +4,7 @@ import { getProducts, productList, displayProducts,
     createCategoryFilter, currentProducts, filterContainer,
     sortDropdown} from "./fetchProductData.js";
 
-
-filterAndDisplay("children")
 loadingFilter("children")
+filterAndDisplay("children")
 
 
