@@ -52,6 +52,11 @@ select:hover {
     margin: 20px auto;
 }
 
+.product-list *:hover{
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
 .product-card {
     width: 23.5%;
     height: fit-content;
