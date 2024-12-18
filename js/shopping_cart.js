@@ -129,6 +129,8 @@ document.getElementById('checkout-btn').addEventListener('click', function() {
   // Rensa kundvagnen och lägg till meddelandet
   cartTable.innerHTML = ''; // Ta bort alla produkter
   cartTable.appendChild(messageRow); // Lägg till meddelandet
+
+  localStorage.removeItem('cart');
   
   // Inaktivera knappen för att förhindra att användaren klickar på den igen
   document.getElementById('checkout-btn').disabled = true;
