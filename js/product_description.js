@@ -1,7 +1,7 @@
 
-const urlParams = new URLSearchParams(window.location.Search); //get URL sent from productlist page
-const productId = "675874568c163b7fe8d0b275" /* urlParams.get("id"); */ //Extract the product id
-/* const currentProduct = getProduct(productId);  */
+const urlParams = new URLSearchParams(window.location.search); //get URL sent from productlist page
+const productId = urlParams.get("id");
+
 
 loadPage(productId) //add dynamic content to page
 
@@ -26,14 +26,22 @@ function displayProduct(product){
     //Display the current products details on the page
     itemImage.src = productData.image;
     productDetails.innerHTML = `
-        <article id="product-details">
-            <section id="description-header">
                 <h1 id="item-name">${productData.name}</h1>
                 <h2 id="color">${productData.color}</h2>
                 <h2 id="price">${productData.price.$numberDecimal} kr</h2>
                 <p id="description">${productData.description}</p>
-                </section>
-    `    
+    ` 
+    
+    //Check if in stock and display the result on page
+    const inStockSection = document.getElementById("stock");
+    const inStock = product.stock;
+    if(inStock > 0) {
+        inStockSection.classList.add("inStock");
+        inStockSection.innerText = "In stock" 
+    } else {
+        inStockSection.classList.add("outOfStock");
+        inStockSection.innerText = "Out of stock"
+    }
 };
 
 //Object with the different functions for the shopping cart
@@ -42,8 +50,6 @@ const shoppingCart = {
     checkIfInCart: function (customerCart, productId){
         
             const itemIndex = customerCart.findIndex(item => item.id === productId && item.size === document.getElementById("size").value);
-            
-            console.log(productId)
             return itemIndex;
     },
     addToCart: async function (currentProduct){
@@ -64,7 +70,7 @@ const shoppingCart = {
             }
             
             localStorage.setItem(this.name, JSON.stringify(customerCart));
-    }
+    },
 };
 
 

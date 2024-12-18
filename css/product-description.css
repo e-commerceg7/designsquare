@@ -15,22 +15,32 @@
     height: auto;
 }
 
-
-
 #description-header{
     margin-bottom: 30px;
 }
 
-#description-header h1{
+#product-description h1{
     font-size: 36px;
 }
 
-#description-header h2{
+#product-description h2{
     font-size: 20px;
 }
 
 #description{
     margin: 20px 0;
+}
+
+#size{
+    margin: 5px 0;
+}
+
+#stock.inStock{
+    color: green;
+}
+
+#stock.outOfStock{
+    color: darkred;
 }
 
 .to-cart-btn{
