@@ -119,6 +119,7 @@ nav .logo-link *:hover {
 
 
 .cart-link {
+  position: relative;
   color: white;
   font-size: 24px;
   display: flex;
@@ -148,4 +149,26 @@ nav .logo-link *:hover {
 .search-box .login-btn:hover {
   background-color: #0bda68;
   transition: background-color 0.3s ease;
+}
+
+
+#inCartBubble{
+  /* display: none; */
+  position: absolute;
+  right: -8px;
+  bottom: -2px;
+  text-align: center;
+  font-size: 12px;
+  margin-left: 5px;
+  width: 16px;
+  height: 16px;
+  font-weight: bold;
+  color: white;
+  background-color: black;
+  border-radius: 50%;
+  border: 1px solid white;
+}
+
+.itemsInCart{
+  display: block;
 }
