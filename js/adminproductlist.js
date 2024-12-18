@@ -202,3 +202,109 @@ function toggleFormVisibility(show = false) {
 }
 
 showAllProducts();
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Hämta sökfältet och formuläret
+  const searchInput = document.getElementById("search-bar");
+  const searchForm = document.getElementById("search-form");
+
+  // Förhindra att formuläret skickas
+  if (searchForm) {
+    searchForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+    });
+  }
+
+  // Lägg till eventlyssnare för när användaren skriver i sökfältet
+  if (searchInput) {
+    searchInput.addEventListener("input", debounce((e) => {
+      const searchTerm = e.target.value.trim().toLowerCase(); // Hämta och trimma sökterm
+      filterAndDisplaySearchAdmin(searchTerm);
+    }, 300)); // Debounce för att minska anrop under skrivning
+  } else {
+    console.error('Sökfältet hittades inte!');
+  }
+});
+
+// Funktion för att hantera debouncing
+function debounce(func, wait) {
+  let timeout;
+  return function (...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), wait);
+  };
+}
+
+
+// Filtrera och visa produkter baserat på sökterm
+async function filterAndDisplaySearchAdmin(search) {
+  try {
+    const products = await getProducts(); // Hämta alla produkter
+
+    // Filtrera produkter baserat på namn, kategori, färg eller produktens ID
+    const filteredProducts = products.filter((product) => {
+      const categories = product.categories?.map((category) => category.toLowerCase());
+      const lowerCaseSearch = search.toLowerCase();
+
+      // Kontrollera om sökterm matchar namn, kategori, färg eller produktens ID
+      return (
+        product.name.toLowerCase().includes(lowerCaseSearch) || // Söker efter namn
+        categories?.some((category) => category.includes(lowerCaseSearch)) || // Söker i kategori
+        product.color.toLowerCase().includes(lowerCaseSearch) || // Söker efter färg
+        product._id.toLowerCase().includes(lowerCaseSearch) || // Söker efter produktens ID
+        (lowerCaseSearch === "men" && categories.includes("men")) || // Söker på "Men"
+        (lowerCaseSearch === "women" && categories.includes("women")) || // Söker på "Women"
+        (lowerCaseSearch === "children" && categories.includes("children")) // Söker på "Children"
+      );
+    });
+
+    displayProductsAdmin(filteredProducts); // Visa de filtrerade produkterna
+  } catch (error) {
+    console.error("Fel vid filtrering av produkter:", error);
+  }
+}
+
+
+// Funktion för att visa produkter
+function displayProductsAdmin(products) {
+  const productList = document.querySelector(".admin-product-list");
+  if (!productList) return;
+
+  productList.innerHTML = ""; // Rensa tidigare produkter
+
+  if (products.length === 0) {
+    productList.innerHTML = "<p>Inga produkter hittades som matchar din sökning.</p>";
+    return;
+  }
+
+  products.forEach((product) => {
+    const productCard = document.createElement("div");
+    productCard.classList.add("product-card");
+
+    productCard.innerHTML = `
+      <img src="${product.image}" alt="${product.name}" />
+      <h3>${product.name}</h3>
+      <p>${product.description || "Ingen beskrivning"}</p>
+      <p><strong>Pris:</strong> ${product.price.$numberDecimal} kr</p>
+      <button class="edit-btn">Redigera</button>
+      <button class="delete-btn">Ta bort</button>
+    `;
+
+    // Koppla knapparna till deras funktioner
+    productCard.querySelector(".edit-btn").addEventListener("click", () => {
+      setEditForm(product);
+    });
+
+    productCard.querySelector(".delete-btn").addEventListener("click", () => {
+      deleteProduct(product._id);
+    });
+
+    productList.appendChild(productCard);
+  });
+}
+
+
