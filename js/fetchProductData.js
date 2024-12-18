@@ -124,6 +124,14 @@ export function getSubcategories (products) {
 
 export function createCategoryFilter(category, subcategories){
   filterContainer.innerHTML = ""
+  const allCategoryBtn = document.createElement("button")
+  allCategoryBtn.textContent = "All Categories"
+  allCategoryBtn.classList.add("category-button")
+  allCategoryBtn.addEventListener("click", ()=>[
+    filterAndDisplay(category)
+  ])
+  filterContainer.appendChild(allCategoryBtn)
+
   subcategories.forEach((subcategory) => {
       const button = document.createElement("button")
       button.textContent = subcategory
@@ -133,6 +141,7 @@ export function createCategoryFilter(category, subcategories){
       })
       filterContainer.appendChild(button)
   })
+  
 }
 
 // functions for sort-dropdown on product-list pages
