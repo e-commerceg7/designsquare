@@ -4,7 +4,9 @@
   box-sizing: border-box;
 }
 
-
+body {
+  padding-bottom: 100px;
+}
 .submit-button {
   background-color: rgb(77, 206, 77);
 }
