@@ -114,6 +114,27 @@ document.addEventListener('click', function(e) {
 // Initial render när sidan laddas
 renderCart();
 
+// Eventlistener för checkout-knappen
+document.getElementById('checkout-btn').addEventListener('click', function() {
+  const cartTable = document.getElementById('shopping-cart-list');
+
+  // Skapa en ny rad för meddelandet
+  const messageRow = document.createElement('tr');
+  messageRow.innerHTML = `
+    <td colspan="5" style="text-align: center; font-size: 18px; font-weight: bold;">
+      Thank you for your order
+    </td>
+  `;
+
+  // Rensa kundvagnen och lägg till meddelandet
+  cartTable.innerHTML = ''; // Ta bort alla produkter
+  cartTable.appendChild(messageRow); // Lägg till meddelandet
+  
+  // Inaktivera knappen för att förhindra att användaren klickar på den igen
+  document.getElementById('checkout-btn').disabled = true;
+});
+
+
 
 //till product_desription.js
 //lägg till const shoppingCart=...
