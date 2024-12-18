@@ -1,30 +1,11 @@
-import { getProducts, productList, displayProducts, filterAndDisplay, filteredProducts, sortProducts} from "./fetchProductData.js";
-filterAndDisplay("children");
-
-const sortDropdown = document.getElementById("sort-products")
-sortDropdown.addEventListener("change", (event)=>{
-    const sortBy = event.target.value
-    const sortedProducts = sortProducts(sortBy)
-    displayProducts(sortedProducts)
-})
+import { getProducts, productList, displayProducts, 
+    filterAndDisplay, filteredProducts, sortProducts, 
+    filterProducts, loadingFilter, getSubcategories, 
+    createCategoryFilter, currentProducts, filterContainer,
+    sortDropdown} from "./fetchProductData.js";
 
 
-const categoryMap = {
-    children: 'children',
-    jackets: 'jackets',
-    jeans: 'jeans',
-    hoodies: 'hoodies',
-    shoes: 'shoes',
-    pants: 'pants',
-    sweatshirts: 'sweatshirts',
-    shorts: 'shorts',
-    sleepwear: 'sleepwear'
-}
+filterAndDisplay("children")
+loadingFilter("children")
 
-Object.keys(categoryMap).forEach(id => {
-    const button = document.getElementById(id);
-    button.addEventListener("click", ()=>{
-        filterAndDisplay('children', categoryMap[id])
-    })
-})
 
