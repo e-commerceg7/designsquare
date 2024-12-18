@@ -1,4 +1,5 @@
-
+import { basketIcon } from "./navbar.js";
+import { shoppingCart } from "./navbar.js";
 const urlParams = new URLSearchParams(window.location.search); //get URL sent from productlist page
 const productId = urlParams.get("id");
 
@@ -44,7 +45,7 @@ function displayProduct(product){
     }
 };
 
-//Object with the different functions for the shopping cart
+/* //Object with the different functions for the shopping cart ## ! ## THIS OBJECT IS MOVED TO navbar.js for accessability to other pages
 const shoppingCart = {
     name: "cart",
     checkIfInCart: function (customerCart, productId){
@@ -71,9 +72,13 @@ const shoppingCart = {
             }
             
             localStorage.setItem(this.name, JSON.stringify(customerCart));
+            basketIcon.update();
     },
-};
-
+    getCart: function(){
+        const customerCart = JSON.parse(localStorage.getItem(this.name)) || [];
+        return customerCart
+    }
+}; */
 
 //Fetch a single product by productId
 async function getProduct(productId){
