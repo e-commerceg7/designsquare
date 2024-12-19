@@ -1,3 +1,5 @@
+import { basketIcon } from "./navbar.js";
+
 // Funktion för att hämta kundvagnen från localStorage
 function loadCart() {
   const cart = localStorage.getItem('cart');
@@ -76,6 +78,7 @@ function updateQuantity(id, newQuantity) {
     cart[productIndex].quantity = newQuantity;
     localStorage.setItem('cart', JSON.stringify(cart)); // Uppdatera localStorage
     renderCart(); // Återrendera kundvagnen
+    basketIcon.update();
   }
 }
 
@@ -85,6 +88,7 @@ function removeProduct(id) {
   const updatedCart = cart.filter(product => product.id !== id);
   localStorage.setItem('cart', JSON.stringify(updatedCart)); // Uppdatera localStorage
   renderCart(); // Återrendera kundvagnen
+  basketIcon.update();
 }
 
 // Eventlistener för att hantera ändringar i kvantitet och borttagning
