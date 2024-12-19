@@ -25,8 +25,8 @@ export const basketIcon = {
 export const shoppingCart = {
     name: "cart",
     checkIfInCart: function (customerCart, productId){
-        
-            const itemIndex = customerCart.findIndex(item => item.id === productId && item.size === document.getElementById("size").value);
+            const size = document.getElementById("size").value; 
+            const itemIndex = customerCart.findIndex(item => item.id === (productId + size));
             return itemIndex;
     },
     addToCart: async function (currentProduct){
@@ -36,10 +36,12 @@ export const shoppingCart = {
         if(inCartIndex !== -1){
             customerCart[inCartIndex].quantity += 1;
         } else {
+            const size = document.getElementById("size").value; 
             const item = {
-                id: productData._id,
+                id: productData._id + size,
+                imageUrl: productData.image,
                 description: productData.name,
-                size: document.getElementById("size").value,
+                size: size,
                 color: productData.color,
                 price: productData.price.$numberDecimal,
                 quantity: 1
