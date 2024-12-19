@@ -145,12 +145,16 @@ export function createCategoryFilter(category, subcategories){
 }
 
 // functions for sort-dropdown on product-list pages
-export const sortDropdown = document.getElementById("sort-products")
-sortDropdown.addEventListener("change", (event)=>{
+
+export function sorteraProducts () {
+  const sortDropdown = document.getElementById("sort-products")
+  sortDropdown.addEventListener("change", (event)=>{
     const sortBy = event.target.value
     const sortedProducts = sortProducts(sortBy)
     displayProducts(sortedProducts)
 })
+}
+
 
 export function sortProducts(sortBy) {
   const sortedProducts = [...filteredProducts]
