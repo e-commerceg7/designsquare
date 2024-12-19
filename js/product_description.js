@@ -47,7 +47,7 @@ function displayProduct(product){
 
 /* //Object with the different functions for the shopping cart ## ! ## THIS OBJECT IS MOVED TO navbar.js for accessability to other pages
 const shoppingCart = {
-    name: "shoppingCart",
+    name: "cart",
     checkIfInCart: function (customerCart, productId){
         
             const itemIndex = customerCart.findIndex(item => item.id === productId && item.size === document.getElementById("size").value);
@@ -62,6 +62,7 @@ const shoppingCart = {
         } else {
             const item = {
                 id: productData._id,
+                description: productData.name,
                 size: document.getElementById("size").value,
                 color: productData.color,
                 price: productData.price.$numberDecimal,
