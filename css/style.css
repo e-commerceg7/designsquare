@@ -172,3 +172,90 @@ nav .logo-link *:hover {
 .itemsInCart{
   display: block;
 }
+
+/* Tablet */
+@media (max-width: 1024px) and (min-width: 768px) {
+  .link-box a {
+    font-size: 16px;
+  }
+
+  .search-box {
+    gap: 15px;
+  }
+
+  .input-box input[type=text] {
+    width: 70%;
+    font-size: 14px;
+  }
+
+  .logo-link h1 {
+    font-size: 26px;
+  }
+}
+
+
+/* Mobile */
+@media (max-width: 940px) {
+  nav {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    padding: 20px;
+  }
+
+  nav input, button {
+    transform: scale(0.7);
+  }
+
+  .link-box {
+    align-items: center;
+    gap: 10px;
+    order: 3;
+  }
+
+  .link-box a {
+    font-size: 18px;
+  }
+
+  .search-box {
+    margin-top: 10px;
+    order: 2;
+    transform-origin: center;
+    width: 100%;
+  }
+
+  .login-btn {
+    transform: scale(0.7);
+    transform-origin: center;
+    margin-right: auto;
+  }
+
+  .cart-link {
+    font-size: 20px;
+    margin: 0;
+  }
+
+  .input-box input[type=text] {
+    width: 100%;
+    font-size: 12px;
+  }
+
+  .input-box button {
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  .logo-link {
+    order: 1;
+    margin-top: -10px;
+  }
+  .logo-link h1 {
+    font-size: 10px;
+  }
+
+  #inCartBubble {
+    right: -5px;
+    bottom: 0;
+    font-size: 10px;
+  }
+}
